@@ -1246,7 +1246,9 @@ const USB_Descriptor_String_t PROGMEM SerialNumberString = {
 
 uint8_t SerialNumberString[SERIAL_NUMBER_DESCRIPTOR_SIZE] = {0};
 
-void set_serial_number_descriptor(void) {
+// Weak so a keyboard can fill SerialNumberString from its own source,
+// for example a factory-programmed serial stored in flash.
+__attribute__((weak)) void set_serial_number_descriptor(void) {
     static bool is_set = false;
     if (is_set) {
         return;
