@@ -176,7 +176,7 @@
 #define CS36_SW20 0xA1
 
 // TODO: Should have attribute __flash. But won't compile if I add it
-const is31_led g_is31_leds[RGB_MATRIX_LED_COUNT] = {
+const is31fl3743a_led_t PROGMEM g_is31fl3743a_leds[IS31FL3743A_LED_COUNT] = {
 /* Refer to IS31 manual for these locations
  *   driver
  *   |    R location
@@ -184,59 +184,59 @@ const is31_led g_is31_leds[RGB_MATRIX_LED_COUNT] = {
  *   |    |          |          B location
  *   |    |          |          | */
     // Re-arranged in LED ID order so it matches with the physical location array
-    {0,   CS3_SW6,   CS2_SW6,   CS1_SW6}, // LED 1
-    {0,   CS3_SW8,   CS2_SW8,   CS1_SW8}, // LED 2
-    {0,   CS3_SW1,   CS2_SW1,   CS1_SW1}, // LED 3
-    {0,   CS3_SW2,   CS2_SW2,   CS1_SW2}, // LED 4
-    {0,   CS3_SW3,   CS2_SW3,   CS1_SW3}, // LED 5
-    {0,   CS3_SW4,   CS2_SW4,   CS1_SW4}, // LED 6
-    {0,   CS3_SW9,   CS2_SW9,   CS1_SW9}, // LED 7
-    {0,   CS3_SW5,   CS2_SW5,   CS1_SW5}, // LED 8
-    {0,   CS3_SW7,   CS2_SW7,   CS1_SW7}, // LED 9
+    {0,   SW6_CS3,   SW6_CS2,   SW6_CS1}, // LED 1
+    {0,   SW8_CS3,   SW8_CS2,   SW8_CS1}, // LED 2
+    {0,   SW1_CS3,   SW1_CS2,   SW1_CS1}, // LED 3
+    {0,   SW2_CS3,   SW2_CS2,   SW2_CS1}, // LED 4
+    {0,   SW3_CS3,   SW3_CS2,   SW3_CS1}, // LED 5
+    {0,   SW4_CS3,   SW4_CS2,   SW4_CS1}, // LED 6
+    {0,   SW9_CS3,   SW9_CS2,   SW9_CS1}, // LED 7
+    {0,   SW5_CS3,   SW5_CS2,   SW5_CS1}, // LED 8
+    {0,   SW7_CS3,   SW7_CS2,   SW7_CS1}, // LED 9
 
-    {0,   CS6_SW3,   CS5_SW3,   CS4_SW3}, // LED 10
-    {0,   CS6_SW7,   CS5_SW7,   CS4_SW7}, // LED 11
-    {0,   CS6_SW1,   CS5_SW1,   CS4_SW1}, // LED 12
-    {0,   CS6_SW2,   CS5_SW2,   CS4_SW2}, // LED 13
-    {0,   CS6_SW4,   CS5_SW4,   CS4_SW4}, // LED 14
-    {0,   CS6_SW5,   CS5_SW5,   CS4_SW5}, // LED 15
-    {0,   CS6_SW6,   CS5_SW6,   CS4_SW6}, // LED 16
-    {0,   CS6_SW8,   CS5_SW8,   CS4_SW8}, // LED 17
-    {0,   CS6_SW9,   CS5_SW9,   CS4_SW9}, // LED 18
+    {0,   SW3_CS6,   SW3_CS5,   SW3_CS4}, // LED 10
+    {0,   SW7_CS6,   SW7_CS5,   SW7_CS4}, // LED 11
+    {0,   SW1_CS6,   SW1_CS5,   SW1_CS4}, // LED 12
+    {0,   SW2_CS6,   SW2_CS5,   SW2_CS4}, // LED 13
+    {0,   SW4_CS6,   SW4_CS5,   SW4_CS4}, // LED 14
+    {0,   SW5_CS6,   SW5_CS5,   SW5_CS4}, // LED 15
+    {0,   SW6_CS6,   SW6_CS5,   SW6_CS4}, // LED 16
+    {0,   SW8_CS6,   SW8_CS5,   SW8_CS4}, // LED 17
+    {0,   SW9_CS6,   SW9_CS5,   SW9_CS4}, // LED 18
 
-    {0,   CS9_SW1,   CS8_SW1,   CS7_SW1}, // LED 19
-    {0,   CS9_SW2,   CS8_SW2,   CS7_SW2}, // LED 20
-    {0,   CS9_SW3,   CS8_SW3,   CS7_SW3}, // LED 21
-    {0,   CS9_SW4,   CS8_SW4,   CS7_SW4}, // LED 22
-    {0,   CS9_SW5,   CS8_SW5,   CS7_SW5}, // LED 23
-    {0,   CS9_SW6,   CS8_SW6,   CS7_SW6}, // LED 24
-    {0,   CS9_SW7,   CS8_SW7,   CS7_SW7}, // LED 25
-    {0,   CS9_SW8,   CS8_SW8,   CS7_SW8}, // LED 26
-    {0,   CS9_SW9,   CS8_SW9,   CS7_SW9}, // LED 27
+    {0,   SW1_CS9,   SW1_CS8,   SW1_CS7}, // LED 19
+    {0,   SW2_CS9,   SW2_CS8,   SW2_CS7}, // LED 20
+    {0,   SW3_CS9,   SW3_CS8,   SW3_CS7}, // LED 21
+    {0,   SW4_CS9,   SW4_CS8,   SW4_CS7}, // LED 22
+    {0,   SW5_CS9,   SW5_CS8,   SW5_CS7}, // LED 23
+    {0,   SW6_CS9,   SW6_CS8,   SW6_CS7}, // LED 24
+    {0,   SW7_CS9,   SW7_CS8,   SW7_CS7}, // LED 25
+    {0,   SW8_CS9,   SW8_CS8,   SW8_CS7}, // LED 26
+    {0,   SW9_CS9,   SW9_CS8,   SW9_CS7}, // LED 27
 
-    {0,  CS12_SW1,  CS11_SW1,  CS10_SW1}, // LED 28
-    {0,  CS12_SW2,  CS11_SW2,  CS10_SW2}, // LED 29
-    {0,  CS12_SW3,  CS11_SW3,  CS10_SW3}, // LED 30
-    {0,  CS12_SW4,  CS11_SW4,  CS10_SW4}, // LED 31
-    {0,  CS12_SW5,  CS11_SW5,  CS10_SW5}, // LED 32
-    {0,  CS12_SW6,  CS11_SW6,  CS10_SW6}, // LED 33
-    {0,  CS12_SW7,  CS11_SW7,  CS10_SW7}, // LED 34
-    {0,  CS12_SW8,  CS11_SW8,  CS10_SW8}, // LED 35
-    {0,  CS12_SW9,  CS11_SW9,  CS10_SW9}, // LED 36
+    {0,  SW1_CS12,  SW1_CS11,  SW1_CS10}, // LED 28
+    {0,  SW2_CS12,  SW2_CS11,  SW2_CS10}, // LED 29
+    {0,  SW3_CS12,  SW3_CS11,  SW3_CS10}, // LED 30
+    {0,  SW4_CS12,  SW4_CS11,  SW4_CS10}, // LED 31
+    {0,  SW5_CS12,  SW5_CS11,  SW5_CS10}, // LED 32
+    {0,  SW6_CS12,  SW6_CS11,  SW6_CS10}, // LED 33
+    {0,  SW7_CS12,  SW7_CS11,  SW7_CS10}, // LED 34
+    {0,  SW8_CS12,  SW8_CS11,  SW8_CS10}, // LED 35
+    {0,  SW9_CS12,  SW9_CS11,  SW9_CS10}, // LED 36
 
-    {0,  CS15_SW2,  CS14_SW2,  CS13_SW2}, // LED 37
-    {0,  CS15_SW3,  CS14_SW3,  CS13_SW3}, // LED 38
-    {0,  CS15_SW6,  CS14_SW6,  CS13_SW6}, // LED 39
-    {0,  CS15_SW7,  CS14_SW7,  CS13_SW7}, // LED 40
-    {0,  CS15_SW9,  CS14_SW9,  CS13_SW9}, // LED 41
-    {0,  CS15_SW1,  CS14_SW1,  CS13_SW1}, // LED 42
-    {0,  CS15_SW4,  CS14_SW4,  CS13_SW4}, // LED 43
-    {0,  CS15_SW5,  CS14_SW5,  CS13_SW5}, // LED 44
-    {0,  CS15_SW8,  CS14_SW8,  CS13_SW8}, // LED 45
+    {0,  SW2_CS15,  SW2_CS14,  SW2_CS13}, // LED 37
+    {0,  SW3_CS15,  SW3_CS14,  SW3_CS13}, // LED 38
+    {0,  SW6_CS15,  SW6_CS14,  SW6_CS13}, // LED 39
+    {0,  SW7_CS15,  SW7_CS14,  SW7_CS13}, // LED 40
+    {0,  SW9_CS15,  SW9_CS14,  SW9_CS13}, // LED 41
+    {0,  SW1_CS15,  SW1_CS14,  SW1_CS13}, // LED 42
+    {0,  SW4_CS15,  SW4_CS14,  SW4_CS13}, // LED 43
+    {0,  SW5_CS15,  SW5_CS14,  SW5_CS13}, // LED 44
+    {0,  SW8_CS15,  SW8_CS14,  SW8_CS13}, // LED 45
 
-    {0,  CS18_SW1,  CS17_SW1,  CS16_SW1}, // LED 46
-    {0,  CS18_SW2,  CS17_SW2,  CS16_SW2}, // LED 47
-    {0,  CS18_SW3,  CS17_SW3,  CS16_SW3}, // LED 48
+    {0,  SW1_CS18,  SW1_CS17,  SW1_CS16}, // LED 46
+    {0,  SW2_CS18,  SW2_CS17,  SW2_CS16}, // LED 47
+    {0,  SW3_CS18,  SW3_CS17,  SW3_CS16}, // LED 48
 
     {1, CS21_SW12, CS20_SW12, CS19_SW12}, // LED 49
     {1, CS21_SW13, CS20_SW13, CS19_SW13}, // LED 50

@@ -9,9 +9,8 @@
 #if defined(RGB_MATRIX_ENABLE)
 #include "rgb_matrix.h"
 #endif
-#ifdef SERIAL_NUMBER
 #include "dyn_serial.h"
-#endif
+#include "keymap_introspection.h"
 
 enum factory_commands {
     f_emu_keypress  = 0x01, // Next byte is keycode
@@ -22,19 +21,15 @@ enum factory_commands {
 };
 
 #if defined(RGB_MATRIX_ENABLE)
-extern uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS];
-
 void emulate_rgb_keycode_press(uint16_t target_keycode) {
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
         for (uint8_t col = 0; col < MATRIX_COLS; col++) {
-            uint16_t keycode = keymaps[0][row][col];
-            process_rgb_matrix(row, col, keycode == target_keycode);
+            uint16_t keycode = keycode_at_keymap_location(0, row, col);
+            rgb_matrix_handle_key_event(row, col, keycode == target_keycode);
         }
     }
 }
 #endif
-
-extern char ascii_serialnum[SERIALNUM_LEN+1];
 
 void handle_factory_command(uint8_t *data) {
     uint8_t factory_command_id = data[0];
@@ -58,11 +53,11 @@ void handle_factory_command(uint8_t *data) {
             print("Reading Device serial number\n");
 
 
-#ifdef SERIAL_NUMBER
-            uprintf("Serial number: %s\n", ascii_serialnum);
-#else
-            uprintf("Serial number unavailable\n");
-#endif
+            if (ascii_serialnum[0]) {
+                uprintf("Serial number: %s\n", ascii_serialnum);
+            } else {
+                uprintf("Serial number unavailable\n");
+            }
             break;
         case f_bios_mode:
             if (command_data[0] == 0x01) {

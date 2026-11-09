@@ -5,26 +5,18 @@
 
 #include "quantum.h"
 
-#if KEYBOARD_framework_ansi
-    #include "ansi.h"
-#elif KEYBOARD_framework_copilot
-    #include "copilot.h"
-#elif KEYBOARD_framework_iso
-    #include "iso.h"
-#elif KEYBOARD_framework_jis
-    #include "jis.h"
-#elif KEYBOARD_framework_numpad
-    #include "numpad.h"
-#elif KEYBOARD_framework_macropad
-    #include "macropad.h"
-#endif
-
+// Keyboard-level keycodes live in the QK_KB range so keymaps and userspace
+// can keep using SAFE_RANGE for their own keycodes.
 enum framework_keycodes {
-  // Custom keycode to change screen modes (e.g. enable external screen)
-  KC_SCRN = SAFE_RANGE,
-  FN_LOCK,
-  KC_CPLT,
+    // Change screen modes (e.g. enable external screen), sends WIN+P
+    KC_SCRN = QK_KB_0,
+    FN_LOCK,
+    // Copilot key, sends WIN+SHIFT+F23
+    KC_CPLT,
+    // Toggle airplane mode (HID Wireless Radio Button)
+    KC_AIRPLANE_MODE,
 };
+#define KC_AIRP KC_AIRPLANE_MODE
 
 extern bool bios_mode;
 extern bool is_suspended;
@@ -41,7 +33,7 @@ void set_bios_mode(bool val);
 // Pin SDB to enable the RGB controller
 #ifdef PICO_FL16
 // 22 only on RPi Pico because it doesn't have GP29
-#define IS31FL3743A_ENABLE_GPIO GP22
+#    define IS31FL3743A_ENABLE_GPIO GP22
 #else
-#define IS31FL3743A_ENABLE_GPIO GP29
+#    define IS31FL3743A_ENABLE_GPIO GP29
 #endif
