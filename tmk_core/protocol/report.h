@@ -49,6 +49,11 @@ enum hid_report_ids {
 // hid_report_ids above (which only enumerates shared-endpoint reports up to REPORT_ID_COUNT).
 #define REPORT_ID_PLOVER_HID 0x50
 
+// Report ID for the optional Wireless Radio Controls collection (airplane mode
+// button, see RADIO_CONTROLS_ENABLE). Sent through send_extra() with a
+// report_extra_t, whose 16-bit usage field carries the button state.
+#define REPORT_ID_RADIO 0x51
+
 /* Mouse buttons */
 #define MOUSE_BTN_MASK(n) (1 << (n))
 enum mouse_buttons {
